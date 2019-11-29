@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            function computerPlay() {
+                //randomly returns 'Rock', 'Paper' or 'Scissors'.
+                let myArray = ['Rock', 'Paper', 'Scissors'];
+                let rand = myArray[Math.floor(Math.random() * myArray.length)];
+                console.log("Computer played: " + rand);
+                return rand;
+            }
+            function playRound(playerSelection, computerSelection) {
+                //return a string that declares the winner of the round like so "You Lose! Paper beats Rock"
+                //make your function case insensitive
+                let playerPick = playerSelection.toUpperCase();
+                switch(playerPick) {
+                    case 'ROCK':
+                        if(computerSelection === 'Rock') {
+                            console.log("You Tie!  Both picked Rock");
+                            return 0;
+                        } else if(computerSelection === 'Paper') {
+                            console.log("You Lose! Paper beats Rock");
+                            return -1;
+                        } else {
+                            console.log("You Win! Rock beats Scissors");
+                            return 1;
+                        }
+                        break;
+                    case 'PAPER':
+                        if(computerSelection === 'Paper') {
+                            console.log("You Tie! Both picked Paper");
+                            return 0;
+                        } else if(computerSelection === 'Scissors') {
+                            console.log("You Lose! Scissors beats Paper");
+                            return -1;
+                        } else {
+                            console.log("You Win! Paper beats Rock");
+                            return 1;
+                        }
+                        break;
+                    case 'SCISSORS':
+                        if(computerSelection === 'Scissors') {
+                            console.log("You Tie! Both picked Scissors");
+                            return 0;
+                        } else if(computerSelection === 'Rock') {
+                            console.log("You Lose! Rock beats Scissors");
+                            return -1;
+                        } else {
+                            console.log("You Win! Scissors beats Paper");
+                            return 1;
+                        }
+                        break;
+                    default: 
+                        console.log("Player Input Not Rock Paper or Scissors");
+                }
+            }
+
+            function game() {
+                console.log("Time to play Rock Paper Scissors!");
+                let round = 0;
+                let scoreP1 = 0;
+                let scoreCp = 0;
+                for(round; round < 5; round++){
+                    console.log("Round " + (round+1));
+                    let input = prompt("What will you play this round?", 'Rock');
+                    let result = playRound(input, computerPlay());
+                    if(result == 1) {
+                        scoreP1++;
+                    } else if(result == -1) {
+                        scoreCp++;
+                    }
+                    console.log("Score: You: " + scoreP1 + " Computer: " + scoreCp);
+                }
+            
+                console.log("Congratulations to " + ((scoreP1 > scoreCp) ? "You!" : 
+                                                    (scoreCp > scoreP1) ? "Computer!" : "Both Players!"));
+            }
+
+            game();
+            
+            /** 
+            To Test, 
+            const playerSelection = 'rock'
+            const computerSelection = computerPlay()
+            console.log(playRound(playerSelection, computerSelection))
+            **/
+
+            /**
+            Write a NEW function game().  Use previous function inside this to play a 5 round game that keeps score 
+            and reports a winner or loser at the end
+            -use console.log() to display the results of each round and the winner at the end
+            -use prompt() to get input from the user
+             result = window.prompt(message, default); 
+            **/
+        </script>
+    </body>
+</html>
